@@ -22,7 +22,7 @@ Route::get('/ext/users/{id}', [UserController::class, 'getUserById']);
 Route::post('/ext/login', [UserController::class, 'loginUser']);
 
 Route::post('/ext/setItem', [ItemController::class, 'setItem']);
-Route::get('/ext/items', [ItemController::class, 'getItems']);
+Route::get('/ext/getItems', [ItemController::class, 'getItems']);
 Route::get('/ext/items/{search}', [ItemController::class, 'getItem']);
 
 Route::get('/ext/shopping-cart', [ShoppingCartController::class, 'getShoppingCartByUserName']);
