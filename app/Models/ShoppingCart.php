@@ -8,28 +8,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ShoppingCart extends Model
 {
-    use HasFactory;
-
+    protected $table = 'items_cart';
     protected $fillable = [
-        'user_name',
-        'item_name',
+        'user_id',
         'quantity',
-        'total'
+        'name',
+        'price'
     ];
 
-    /**
-     * Get the user that owns the shopping cart.
-     */
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Get the item associated with the shopping cart.
-     */
-    public function items()
-    {
-        return $this->hasMany(Item::class);
     }
 }
