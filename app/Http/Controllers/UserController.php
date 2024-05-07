@@ -37,22 +37,18 @@ class UserController extends Controller
     public function loginUser(Request $request)
     {
         $fields = $request->validate([
-             'username' => 'required|string'
-            ,'password' => 'required|string'
-        ]);
+            'username' => 'required|string'
+           ,'password' => 'required|string'
+       ]);
 
-        
-        $user = User::where('name', $fields['username'])->first();
-        if(is_null($user)){
-            return response("", 204);
-        }else{
-            if (Hash::check($fields['password'], $user->password)) { 
-                $request->session()->put('username', $fields['username']);
-                return response(array($user), 200);
-            }else{
-                return response("", 204);
-            }   
-        }
+       
+       $user = User::where('name', $fields['username'])->first();
+       if (Hash::check($fields['password'], $user->password)) { 
+           //unset($user['password']);*/
+           return response(array($user), 200);
+       }else{
+           return response(array(), 200);
+       }
 
     }
 }

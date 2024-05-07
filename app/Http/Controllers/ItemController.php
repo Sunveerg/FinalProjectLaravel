@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Item;
 
@@ -23,9 +24,9 @@ class ItemController extends Controller
         return response($item, 201);
     }
 
-    public function getItems(){
-        $arryItems = Item::all();
-        return response($arryItems, 201);
+    public function getItems() {
+        $arryItems = Item::all(); 
+        return response() -> json($arryItems, 200);
     }
 
     public function getItem($search){
