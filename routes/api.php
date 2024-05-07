@@ -11,15 +11,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/sanctum/csrf-cookie', function () {
-    return csrf_token(); 
+Route::get('/sanctum/csrf-cookie', function (Request $request) {
+    $token = $request->session()->token();
+    return response([$token], 200);
 });
 
 
 Route::post('/ext/setUser', [UserController::class, 'setUser']);
 Route::get('/ext/users', [UserController::class, 'getUsers']);
 Route::get('/ext/users/{id}', [UserController::class, 'getUserById']);
-Route::post('/ext/login', [UserController::class, 'loginUser']);
+Route::post('/ext/loginUser', [UserController::class, 'loginUser']);
 
 Route::post('/ext/setItem', [ItemController::class, 'setItem']);
 Route::get('/ext/items', [ItemController::class, 'getItems']);

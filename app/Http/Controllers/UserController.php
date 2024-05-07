@@ -36,6 +36,8 @@ class UserController extends Controller
 
     public function loginUser(Request $request)
     {
+        error_log("got here1");
+
         $fields = $request->validate([
             'username' => 'required|string'
            ,'password' => 'required|string'
@@ -46,6 +48,7 @@ class UserController extends Controller
        if (Hash::check($fields['password'], $user->password)) { 
            //unset($user['password']);*/
            return response(array($user), 200);
+           error_log("got here");
        }else{
            return response(array(), 200);
        }
